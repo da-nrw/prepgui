@@ -1,0 +1,34 @@
+<table class="table table-condensed">
+	<tr ng-show='ifHasProperty(cho._source["edm:providedCHO"]["dc:title"])'>
+	<td>Titel:</td>
+	<td>{{cho._source["edm:providedCHO"]["dc:title"]}}</td></tr>
+
+	<tr ng-show='ifHasProperty(cho._source["edm:providedCHO"]["dc:identifier"])'>
+	<td>Identifier:</td>
+	<td>{{cho._source["edm:providedCHO"]["dc:identifier"] | json}}</td></tr>
+
+	<tr ng-show='ifHasProperty(cho._source["edm:providedCHO"]["dc:creator"])'>
+	<td>Autor:</td>
+	<td>{{cho._source["edm:providedCHO"]["dc:creator"]}}</td></tr>
+
+	<tr ng-show='ifHasProperty(cho._source["edm:dataProvider"]["dc:title"])'>
+	<td>Herkunft:</td>
+	<td>{{cho._source["edm:dataProvider"]["dc:title"]}}<div ng-show='ifHasProperty(cho._source["edm:dataProvider"]["dc:type"])'>
+	({{cho._source["edm:dataProvider"]["dc:type"]}})</div></td></tr>
+
+	<tr ng-show='ifHasProperty(cho._source["edm:providedCHO"]["dc:rights"])'>
+	<td>Copyright / Rechtsvermerke:</td>
+	<td>{{cho._source["edm:providedCHO"]["dc:rights"]}}</td></tr>
+
+	<tr ng-show='ifHasProperty(cho._source["edm:providedCHO"]["dc:description"])'>
+	<td>Beschreibung:</td>
+	<td>{{cho._source["edm:providedCHO"]["dc:description"]}}</td></tr>
+
+	<tr ng-show='ifHasProperty(cho._source["edm:providedCHO"]["dcterms:spatial"])'>
+	<td>Ortsangaben:</td>
+	<td><button class="btn btn-info btn-small" ng-repeat="location in cho._source['edm:providedCHO']['dcterms:spatial']">{{location}}</button></td></tr>
+
+	<tr ng-show='ifHasProperty(cho._source["edm:providedCHO"]["dc:date"])'>
+	<td>Datum:</td>
+	<td>{{cho._source["edm:providedCHO"]["dc:date"]}}</td></tr>
+</table>

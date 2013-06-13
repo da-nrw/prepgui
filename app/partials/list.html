@@ -1,0 +1,38 @@
+<div ng-controller="ListCtrl">
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span8">
+
+				<table class="table table-striped">
+					<tr ng-repeat="cho in chos">
+						<td><a ng-href="#/chos/{{cho._id}}">{{cho._source["edm:providedCHO"]["dc:title"]}}</a></td>
+						<td>{{cho._source["edm:dataProvider"]["dc:title"]}}</td>
+						<td><button type="button" class="btn btn-mini disabled" ng-mouseover="previewCho(cho)">&gt;</button></td>
+					</tr>
+				</table>
+
+				Debug: {{selectedPage}}
+				<div class="pagination">
+					<ul>
+						<li ng-repeat="page in pages">
+							<a ng-click="selectPage(page)">{{page+1}}</a></td>		
+						</li>	
+					</ul>
+				</div>
+
+			</div>
+
+			<div class="span4">
+				<a ng-href="#/chos/{{focused_cho._id}}"><img src="{{focused_cho._source['edm:object']['@id']}}"></a>
+				<p>{{focused_cho._source['edm:providedCHO']['dc:description']}}</p>
+
+	</div>
+
+	<h1>{{}}</h1>
+
+</div>
