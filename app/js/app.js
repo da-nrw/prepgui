@@ -2,9 +2,9 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives' ]).
+angular.module('prepgui', ['prepgui.filters', 'prepgui.services', 'prepgui.directives' ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});
-    $routeProvider.when('/chos/:cho_id', {templateUrl: 'partials/detail.html', controller: 'DetailCtrl'});
-    $routeProvider.otherwise({redirectTo: '/'});
+    $routeProvider.when('/detail/:id', {templateUrl: 'partials/detail.html', controller: 'DetailCtrl'});
+    $routeProvider.otherwise({redirectTo: '/?q=*'});
   }]);

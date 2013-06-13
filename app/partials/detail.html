@@ -7,18 +7,25 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span8">
-
-				<div ng-include="" src="'partials/detailtable.html'" ng-controller="DetailCtrl"></div>
-		
-			</div>
-			<div class="span4">
-
-        <a ng-href="{{cho._source['edm:hasView'][0]['@id']}}"><img src="{{cho._source['edm:hasView'][0]['@id']}}"></a>
-				<br><br>
-        <button class="btn btn-mini btn-inverse" ng-repeat="tag in cho._source['edm:providedCHO']['dc:subject']">{{tag}}</button>
-
-			</div>
+		<div ng-include="" src="'partials/detailtable.html'" ng-controller="DetailCtrl"></div>
+		<div ng-show="parent">
+			<h4>Übergeordnetes Objekt</h4>
+			<ul>
+				<li><a ng-href="#/detail/{{parent._id}}">{{parent._source['edm:aggregatedCHO']['dc:title']}}</a></li>
+			</ul>
 		</div>
+	  </div>
+	  <div class="span4">
+	  	<div ng-show="aggregation._source['edm:hasView']['dc:format'] == 'mets'">
+			<a href="http://dfg-viewer.de/demo/viewer/?set[mets]={{urlEncode(aggregation._source['edm:hasView']['@id'])}}" target="_blank">DFG-Viewer »</a>
+		</div>
+		<div>
+	  		<img ng-src="{{getThumb(aggregation._source)}}">
+		</div>
+        <button class="btn btn-mini btn-inverse" ng-repeat="tag in aggregation._source['edm:aggregatedCHO']['dc:subject']">{{tag}}</button>
+	  </div>
+	  
 	</div>
+  </div>
 </div>
 
