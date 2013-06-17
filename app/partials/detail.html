@@ -11,13 +11,21 @@
 		<div ng-show="parent">
 			<h4>Übergeordnetes Objekt</h4>
 			<ul>
-				<li><a ng-href="#/detail/{{parent._id}}">{{parent._source['edm:aggregatedCHO']['dc:title']}}</a></li>
+				<li><a ng-href="#/detail/{{parent._id}}">{{parent._source['edm:aggregatedCHO']['dc:title'][0]}}</a></li>
+			</ul>
+		</div>
+		<div ng-show="children">
+			<h4>Untergeordnete Objekte</h4>
+			<ul>
+				<li ng-repeat="child in children">
+					<a ng-href="#/detail/{{child._id}}">{{child._source['edm:aggregatedCHO']['dc:title'][0]}}</a>
+				</li>
 			</ul>
 		</div>
 	  </div>
 	  <div class="span4">
-	  	<div ng-show="aggregation._source['edm:hasView']['dc:format'] == 'mets'">
-			<a href="http://dfg-viewer.de/demo/viewer/?set[mets]={{urlEncode(aggregation._source['edm:hasView']['@id'])}}" target="_blank">DFG-Viewer »</a>
+	  	<div ng-repeat="view in aggregation._source['edm:hasView'] | filter:{'dc:format':'mets'}">
+			<a href="http://dfg-viewer.de/demo/viewer/?set[mets]={{urlEncode(view['@id'])}}" target="_blank">DFG-Viewer »</a>
 		</div>
 		<div>
 	  		<img ng-src="{{getThumb(aggregation._source)}}">

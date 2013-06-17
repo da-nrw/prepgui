@@ -45,7 +45,7 @@
 					<tr ng-repeat="aggregation in aggregations"
 							ng-class="{info:(aggregation._id == focused._id)}"
 							ng-mouseover="preview(aggregation)" ng-mouseout="preview(null)">
-						<td><a ng-href="#/detail/{{aggregation._id}}">{{aggregation._source["edm:aggregatedCHO"]["dc:title"]}}</a></td>
+						<td><a ng-href="#/detail/{{aggregation._id}}">{{aggregation._source["edm:aggregatedCHO"]["dc:title"][0]}}</a></td>
 						<!--<td>{{aggregation._source["edm:dataProvider"]}}</td>-->
 						<td><button type="button" class="btn btn-mini disabled">&gt;</button></td>
 					</tr>
@@ -58,7 +58,7 @@
 
 		<div class="span3" ng-show="focused">
 			<a ng-href="#/detail/{{focused._id}}"><img ng-src="{{getThumb(focused._source)}}"></a>
-			<p>{{focused._source['edm:aggregatedCHO']['dc:description']}}</p>
+			<p>{{focused._source['edm:aggregatedCHO']['dc:description'][0]}}</p>
 		</div>
 		
 	</div>

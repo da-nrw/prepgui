@@ -67,13 +67,31 @@ function DetailCtrl($scope, $http, $routeParams, Aggregation, ImageService) {
 
 	Aggregation.get({id:$routeParams.id}, function(result) {
 		$scope.aggregation = result;
+		if (result._source['edm:hasView']['@id'])
+			result._source['edm:hasView'] 
+				= [result._source['edm:hasView']];
 		if (result._source['edm:aggregatedCHO']['dcterms:isPartOf']) {
 			var parents = result._source['edm:aggregatedCHO']['dcterms:isPartOf'];
 			for (var i=0; i<parents.length; i++) {
 				if (parents[i].indexOf("http://www.danrw.de/cho/") == 0) {
 					var parentId = parents[i].split("/").slice(-1)[0];
 					$scope.parent = Aggregation.get({id:parentId});
+					break;
 				}
+			}
+		}
+		var ids = result._source['edm:aggregatedCHO']['dc:identifier'];
+		for (var i=0; i<ids.length; i++) {
+			if (ids[i].indexOf("http://www.danrw.de/cho/") == 0) {
+				var query = {
+					"query": {
+						"term": { "isPartOf_facet": ids[i] }
+					}
+				};
+				Aggregation.search({size:1000}, query, function(result) {
+					$scope.children = result.hits.hits;
+				}); 
+				break;
 			}
 		}
 	});

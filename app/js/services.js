@@ -8,7 +8,7 @@
 var services = angular.module('prepgui.services', ['ngResource']);
 
 services.factory('Aggregation', function($resource){
-	return $resource("http://data.danrw.de/search/portal_test/aggregation/:id",
+	return $resource("http://data.danrw.de/search/portal_2013-06-14/aggregation/:id",
 			{ id: '_id' },
 			{
 				query: { method:'GET', params: { id:'_search' }, isArray:false },
