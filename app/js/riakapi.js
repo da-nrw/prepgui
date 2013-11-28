@@ -40,7 +40,7 @@ function askRiakForDetails($scope,$http,cho_id) {
 }
 
 function searchObject(search) {
-console.log(search);
+
 	var q = "*";
 	if (search.q) q = search.q; 
 	var query = {

@@ -1,34 +1,61 @@
 <table class="table table-condensed">
+
 	<tr ng-show='aggregation._source["edm:aggregatedCHO"]["dc:title"]'>
-	<td>Titel:</td>
-	<td>{{aggregation._source["edm:aggregatedCHO"]["dc:title"]}}</td></tr>
+		<td>Titel:</td>
+		<td>{{aggregation._source["edm:aggregatedCHO"]["dc:title"].join(', ')}}</td>
+	</tr>
 
 	<tr ng-show='aggregation._source["edm:aggregatedCHO"]["dc:identifier"]'>
-	<td>Identifier:</td>
-	<td>{{aggregation._source["edm:aggregatedCHO"]["dc:identifier"] | json}}</td></tr>
+		<td>Identifier:</td>
+		<td>{{aggregation._source["edm:aggregatedCHO"]["dc:identifier"].join(', ')}}</td>
+	</tr>
 
 	<tr ng-show='aggregation._source["edm:aggregatedCHO"]["dc:creator"]'>
-	<td>Autor:</td>
-	<td>{{aggregation._source["edm:aggregatedCHO"]["dc:creator"]}}</td></tr>
+		<td>Autor:</td>
+		<td>{{aggregation._source["edm:aggregatedCHO"]["dc:creator"].join(', ')}}</td>
+	</tr>
 
 	<tr ng-show='aggregation._source["edm:dataProvider"]["dc:title"]'>
-	<td>Herkunft:</td>
-	<td>{{aggregation._source["edm:dataProvider"]["dc:title"]}}<div ng-show='ifHasProperty(aggregation._source["edm:dataProvider"]["dc:type"])'>
-	({{aggregation._source["edm:dataProvider"]["dc:type"]}})</div></td></tr>
+		<td>Herkunft:</td>
+		<td>{{aggregation._source["edm:dataProvider"]["dc:title"].join(', ')}}
+			<div ng-show='ifHasProperty(aggregation._source["edm:dataProvider"]["dc:type"])'>
+				({{aggregation._source["edm:dataProvider"]["dc:type"].join(', ')}})
+			</div>
+		</td>
+	</tr>
 
 	<tr ng-show='aggregation._source["edm:aggregatedCHO"]["dc:rights"]'>
-	<td>Copyright / Rechtsvermerke:</td>
-	<td>{{aggregation._source["edm:aggregatedCHO"]["dc:rights"]}}</td></tr>
+		<td>Copyright / Rechtsvermerke:</td>
+		<td>{{aggregation._source["edm:aggregatedCHO"]["dc:rights"].join(', ')}}</td>
+	</tr>
 
 	<tr ng-show='aggregation._source["edm:aggregatedCHO"]["dc:description"]'>
-	<td>Beschreibung:</td>
-	<td>{{aggregation._source["edm:aggregatedCHO"]["dc:description"]}}</td></tr>
+		<td>Beschreibung:</td>
+		<td>{{aggregation._source["edm:aggregatedCHO"]["dc:description"].join(', ')}}</td>
+	</tr>
 
 	<tr ng-show='aggregation._source["edm:aggregatedCHO"]["dcterms:spatial"]'>
-	<td>Ortsangaben:</td>
-	<td><button class="btn btn-info btn-small" ng-repeat="location in aggregation._source['edm:aggregatedCHO']['dcterms:spatial']">{{location}}</button></td></tr>
+		<td>Ortsangaben:</td>
+		<td>
+			<span ng-repeat="location in aggregation._source['edm:aggregatedCHO']['dcterms:spatial']">
+				<a class="btn btn-info btn-small" ng-click="search(location)">
+					{{location}}
+				</a>
+			</span>
+		</td>
+	</tr>
 
 	<tr ng-show='aggregation._source["edm:aggregatedCHO"]["dc:date"]'>
-	<td>Datum:</td>
-	<td>{{aggregation._source["edm:aggregatedCHO"]["dc:date"]}}</td></tr>
+		<td>Datum:</td>
+		<td>{{aggregation._source["edm:aggregatedCHO"]["dc:date"].join(', ')}}</td>
+	</tr>
+	
+	<tr ng-show="aggregation._source['edm:aggregatedCHO']['dc:subject']">
+		<td>Schlagwörter:</td>
+		<td>
+			<span ng-repeat="tag in aggregation._source['edm:aggregatedCHO']['dc:subject']">
+			    <a class="btn btn-mini btn-inverse" ng-click="search(tag)">{{tag}}</a>
+			</span>
+		</td>
+	</tr>
 </table>

@@ -28,9 +28,10 @@
 			<a href="http://dfg-viewer.de/demo/viewer/?set[mets]={{urlEncode(view['@id'])}}" target="_blank">DFG-Viewer »</a>
 		</div>
 		<div>
-	  		<img ng-src="{{getThumb(aggregation._source)}}">
+			<a ng-href="{{getThumb(aggregation._source)}}" target="_blank">
+	  			<img ng-src="{{getThumb(aggregation._source)}}">
+	  		</a>
 		</div>
-        <button class="btn btn-mini btn-inverse" ng-repeat="tag in aggregation._source['edm:aggregatedCHO']['dc:subject']">{{tag}}</button>
 	  </div>
 	  
 	</div>

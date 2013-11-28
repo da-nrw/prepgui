@@ -3,7 +3,12 @@
 function SearchbarCtrl($scope,$http,$location) {
 
 	$scope.submit = function() {
-		$location.path('/').search({q:$scope.q});
+		$location.path('/search').search({q:$scope.q});
+	}
+	
+	$scope.search = function(query) {
+		console.log(query);
+		$location.path('/search').search({q:query});
 	}
 	
 }
@@ -67,7 +72,7 @@ function DetailCtrl($scope, $http, $routeParams, Aggregation, ImageService) {
 
 	Aggregation.get({id:$routeParams.id}, function(result) {
 		$scope.aggregation = result;
-		if (result._source['edm:hasView']['@id'])
+		if (result._source['edm:hasView'] && result._source['edm:hasView']['@id'])
 			result._source['edm:hasView'] 
 				= [result._source['edm:hasView']];
 		if (result._source['edm:aggregatedCHO']['dcterms:isPartOf']) {

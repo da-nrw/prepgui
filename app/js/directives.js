@@ -8,4 +8,9 @@ angular.module('prepgui.directives', []).
     return function(scope, elm, attrs) {
       elm.text(version);
     };
+  }]).
+  directive('listFromArray', ['values', function(values) {
+    return {
+    	template: '<ul><li ng-repeat="value in value">{{value}}</li></ul>'
+    };
   }]);
