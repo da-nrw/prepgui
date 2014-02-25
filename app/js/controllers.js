@@ -21,7 +21,6 @@ function ListCtrl($scope, $http, $location, Aggregation, ImageService) {
 		$scope.from = 0;
 	}
 
-	console.log('searching');
 	Aggregation.search({from: $location.search().from}, searchObject($location.search()), function(result) {
 		$scope.aggregations = result.hits.hits;
 		$scope.total = result.hits.total;

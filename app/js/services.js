@@ -1,14 +1,12 @@
 'use strict';
 
-/* Services */
+// URL to elasticsearch index
+var indexUrl = "http://data.danrw.de/search/portal";
 
-
-// Demonstrate how to register services
-// In this case it is a simple value service.
 var services = angular.module('prepgui.services', ['ngResource']);
 
 services.factory('Aggregation', function($resource){
-	return $resource("http://data.danrw.de/search/portal/aggregation/:id",
+	return $resource(indexUrl+"/aggregation/:id",
 			{ id: '_id' },
 			{
 				query: { method:'GET', params: { id:'_search' }, isArray:false },
