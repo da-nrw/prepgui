@@ -33,7 +33,7 @@ function ListCtrl($scope, $http, $location, Aggregation, ImageService) {
 			$scope.from = $scope.from - 10;
 			var search = $location.search();
 			search.from = $scope.from;
-			$location.path('/').search(search);
+			$location.search(search);
 		}
 	};
 	
@@ -42,7 +42,7 @@ function ListCtrl($scope, $http, $location, Aggregation, ImageService) {
 			$scope.from = $scope.from + 10;
 			var search = $location.search();
 			search.from = $scope.from;
-			$location.path('/').search(search);
+			$location.search(search);
 		}
 	};
 	

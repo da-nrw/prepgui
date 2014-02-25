@@ -1,4 +1,4 @@
-<div ng-controller="ListCtrl" class="container-fluid">
+<div class="container-fluid">
 
 	<div class="row-fluid">
 	
@@ -6,13 +6,13 @@
 			<ul ng-show="facets.providers" class="nav nav-list">
 				<li class="nav-header">Institution</li>
 				<li ng-repeat="term in facets.providers.terms">
-					<a ng-href="#/?q={{q}}&facet.providers={{term.term}}">{{term.term}} ({{term.count}})</a>
+					<a ng-href="#search/?q={{q}}&facet.providers={{term.term}}">{{term.term}} ({{term.count}})</a>
 				</li>
 			</ul>
 			<ul ng-show="facets.formats" class="nav nav-list">
 				<li class="nav-header">Formate</li>
 				<li ng-repeat="term in facets.formats.terms">
-					<a ng-href="#/?q={{q}}&facet.formats={{term.term}}">{{term.term}} ({{term.count}})</a>
+					<a ng-href="#search/?q={{q}}&facet.formats={{term.term}}">{{term.term}} ({{term.count}})</a>
 				</li>
 			</ul>
 		</div>
@@ -26,13 +26,13 @@
 				<div class="span6">
 					<div class="pagination pull-right">
 						<ul>
-							<li ng-class="{disabled:(from <= 0)}"><a ng-click="prevPage()">«</a></li>
+							<li ng-class="{disabled:(from <= 0)}"><a href="" ng-click="prevPage()">«</a></li>
 							<li class="disabled">
 								<a>
 									Seite {{page()}} / {{totalPages()}}
 								</a>
 							</li>
-							<li ng-class="{disabled:(from > (total - 10))}"><a ng-click="nextPage()">»</a></li>
+							<li ng-class="{disabled:(from > (total - 10))}"><a href="" ng-click="nextPage()">»</a></li>
 						</ul>
 					</div>
 				</div>
