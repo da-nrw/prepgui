@@ -6,7 +6,7 @@ var indexUrl = "http://data.danrw.de/search/portal";
 var services = angular.module('prepgui.services', ['ngResource']);
 
 services.factory('Aggregation', function($resource){
-	return $resource(indexUrl+"/aggregation/:id",
+	return $resource(indexUrl+"/ore\\:Aggregation/:id",
 			{ id: '_id' },
 			{
 				query: { method:'GET', params: { id:'_search' }, isArray:false },
